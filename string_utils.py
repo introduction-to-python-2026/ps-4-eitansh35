@@ -21,4 +21,4 @@ def split_at_first_digit(formula):
     for char_index, char in enumerate(formula):
         if char.isdigit():
             return formula[:char_index], int(formula[char_index:])
-    return formula
+    return formula, 1
