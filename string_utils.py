@@ -1,26 +1,24 @@
 def split_before_each_uppercases(formula):
-    parts = []
-    current_part = ""
+    start = 0
+    end = 1
+    elements_lst = []
     
-    for i, char in enumerate(formula):
-        if i > 0 and char.isupper():
-            parts.append(current_part)
-            current_part = char
-        else:
-            current_part += char
-            
-    if current_part:
-        parts.append(current_part)
+    if not formula:
+        return elements_lst
+    
+    while end < len(formula):
+        if formula[end].isupper():
+            elements_lst.append(formula[start:end])
+            start = end
+        end+=1  
         
-    return parts
-# Replace the `pass` with your code
+    elements_lst.append(formula[start:])
+    
+    return elements_lst
 
 
 def split_at_first_digit(formula):
-    for i, char in enumerate(formula):
+    for char_index, char in enumerate(formula):
         if char.isdigit():
-            prefix = formula[:i]     
-            suffix = formula[i:]    
-            return (prefix, suffix)  
-            
-    return (formula, "")
+            return formula[:char_index], int(formula[char_index:])
+    return formula
